@@ -19,9 +19,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent, onMounted, ref, Ref,
-} from 'vue';
+import { defineComponent, ref, Ref } from 'vue';
 
 export default defineComponent({
   name: 'SingleOtpInput',
@@ -85,9 +83,7 @@ export default defineComponent({
       inputSingle.value.select();
       return emit('on-focus');
     };
-    onMounted(() => {
-      console.log(inputSingle.value);
-    });
+
     const handleOnBlur = () => emit('on-blur');
 
     return {

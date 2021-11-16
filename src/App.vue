@@ -1,16 +1,16 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <SingleOtpInput />
+  <OtpInput />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import SingleOtpInput from '@/components/SingleOtpInput.vue';
+import OtpInput from '@/components/OtpInput.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    SingleOtpInput,
+    OtpInput,
   },
 });
 </script>
