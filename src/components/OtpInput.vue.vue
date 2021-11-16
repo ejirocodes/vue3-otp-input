@@ -52,8 +52,59 @@ export default defineComponent({
       }
       return 'Wait until the user enters the required number of characters';
     };
+
+    // Focus on input by index
+    const focusInput = (input: number) => {
+      activeInput.value = Math.max(Math.min(props.numInputs - 1, input), 0);
+    };
+    // Focus on next input
+    const focusNextInput = () => {
+      focusInput(activeInput.value + 1);
+    };
+    // Focus on previous input
+    const focusPrevInput = () => {
+      focusInput(activeInput.value - 1);
+    };
+
+    // Change OTP value at focused input
+    const changeCodeAtFocus = (value: number) => {
+      oldOtp.value = Object.assign([], otp.value);
+      this.$set(otp.value, activeInput.value, value);
+      if (oldOtp.value.join('') !== otp.value.join('')) {
+        emit('on-change', otp.value.join(''));
+        checkFilledAllInputs();
+      }
+    };
+
+    // Handle pasted OTP
+    const handleOnPaste = (event: any) => {
+      event.preventDefault();
+      const pastedData = event.clipboardData
+        .getData('text/plain')
+        .slice(0, props.numInputs - activeInput.value)
+        .split('');
+      if (props.inputType === 'number' && !pastedData.join('').match(/^\d+$/)) {
+        return 'Invalid pasted data';
+      }
+      // Paste data from focused input onwards
+      const currentCharsInOtp = otp.value.slice(0, activeInput.value);
+      const combinedWithPastedData = currentCharsInOtp.concat(pastedData);
+      this.$set(this, 'otp', combinedWithPastedData.slice(0, props.numInputs));
+      focusInput(combinedWithPastedData.slice(0, props.numInputs).length);
+      return checkFilledAllInputs();
+    };
+
     return {
-      activeInput, otp, oldOtp, handleOnBlur, handleOnFocus, checkFilledAllInputs,
+      activeInput,
+      otp,
+      oldOtp,
+      handleOnBlur,
+      changeCodeAtFocus,
+      focusInput,
+      focusNextInput,
+      focusPrevInput,
+      handleOnFocus,
+      checkFilledAllInputs,
     };
   },
 });
