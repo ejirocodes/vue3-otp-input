@@ -94,6 +94,18 @@ export default defineComponent({
       return checkFilledAllInputs();
     };
 
+     const handleOnChange = (value: number) => {
+      changeCodeAtFocus(value);
+      focusNextInput();
+    }
+    const clearInput = () => {
+      if (otp.value.length > 0) {
+        emit('on-change', '');
+      }
+      otp.value = [];
+      activeInput.value = 0;
+    }
+
     return {
       activeInput,
       otp,
