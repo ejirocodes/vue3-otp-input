@@ -131,27 +131,27 @@ export default defineComponent({
 
     // Handle cases of backspace, delete, left arrow, right arrow
     const handleOnKeyDown = (event: KeyboardEvent) => {
-      console.log(event)
+      console.log(event);
       // switch (event.keyCode) {
-        // case BACKSPACE:
-        //   event.preventDefault();
-        //   changeCodeAtFocus('');
-        //   focusPrevInput();
-        //   break;
-        // case DELETE:
-        //   event.preventDefault();
-        //   changeCodeAtFocus('');
-        //   break;
-        // case LEFT_ARROW:
-        //   event.preventDefault();
-        //   focusPrevInput();
-        //   break;
-        // case RIGHT_ARROW:
-        //   event.preventDefault();
-        //   focusNextInput();
-        //   break;
-        // default:
-        //   break;
+      // case BACKSPACE:
+      //   event.preventDefault();
+      //   changeCodeAtFocus('');
+      //   focusPrevInput();
+      //   break;
+      // case DELETE:
+      //   event.preventDefault();
+      //   changeCodeAtFocus('');
+      //   break;
+      // case LEFT_ARROW:
+      //   event.preventDefault();
+      //   focusPrevInput();
+      //   break;
+      // case RIGHT_ARROW:
+      //   event.preventDefault();
+      //   focusNextInput();
+      //   break;
+      // default:
+      //   break;
       // }
     };
 
