@@ -29,6 +29,12 @@
 import { defineComponent, ref } from 'vue';
 import SingleOtpInput from './SingleOtpInput.vue';
 
+// keyCode constants
+const BACKSPACE = 8;
+const LEFT_ARROW = 37;
+const RIGHT_ARROW = 39;
+const DELETE = 46;
+
 export default defineComponent({
   name: 'OtpInput',
   components: {
@@ -90,7 +96,7 @@ export default defineComponent({
     };
 
     // Change OTP value at focused input
-    const changeCodeAtFocus = (value: number) => {
+    const changeCodeAtFocus = (value: number | string) => {
       oldOtp.value = Object.assign([], otp.value);
       this.$set(otp.value, activeInput.value, value);
       if (oldOtp.value.join('') !== otp.value.join('')) {
@@ -131,28 +137,27 @@ export default defineComponent({
 
     // Handle cases of backspace, delete, left arrow, right arrow
     const handleOnKeyDown = (event: KeyboardEvent) => {
-      console.log(event);
-      // switch (event.keyCode) {
-      // case BACKSPACE:
-      //   event.preventDefault();
-      //   changeCodeAtFocus('');
-      //   focusPrevInput();
-      //   break;
-      // case DELETE:
-      //   event.preventDefault();
-      //   changeCodeAtFocus('');
-      //   break;
-      // case LEFT_ARROW:
-      //   event.preventDefault();
-      //   focusPrevInput();
-      //   break;
-      // case RIGHT_ARROW:
-      //   event.preventDefault();
-      //   focusNextInput();
-      //   break;
-      // default:
-      //   break;
-      // }
+      switch (event.keyCode) {
+        case BACKSPACE:
+          event.preventDefault();
+          changeCodeAtFocus('');
+          focusPrevInput();
+          break;
+        case DELETE:
+          event.preventDefault();
+          changeCodeAtFocus('');
+          break;
+        case LEFT_ARROW:
+          event.preventDefault();
+          focusPrevInput();
+          break;
+        case RIGHT_ARROW:
+          event.preventDefault();
+          focusNextInput();
+          break;
+        default:
+          break;
+      }
     };
 
     return {
