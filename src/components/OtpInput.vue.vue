@@ -94,22 +94,49 @@ export default defineComponent({
       return checkFilledAllInputs();
     };
 
-     const handleOnChange = (value: number) => {
+    const handleOnChange = (value: number) => {
       changeCodeAtFocus(value);
       focusNextInput();
-    }
+    };
     const clearInput = () => {
       if (otp.value.length > 0) {
         emit('on-change', '');
       }
       otp.value = [];
       activeInput.value = 0;
-    }
+    };
+
+    // Handle cases of backspace, delete, left arrow, right arrow
+    const handleOnKeyDown = (event: KeyboardEvent) => {
+      switch (event.keyCode) {
+        case BACKSPACE:
+          event.preventDefault();
+          changeCodeAtFocus('');
+          focusPrevInput();
+          break;
+        case DELETE:
+          event.preventDefault();
+          changeCodeAtFocus('');
+          break;
+        case LEFT_ARROW:
+          event.preventDefault();
+          focusPrevInput();
+          break;
+        case RIGHT_ARROW:
+          event.preventDefault();
+          focusNextInput();
+          break;
+        default:
+          break;
+      }
+    },;
 
     return {
       activeInput,
       otp,
       oldOtp,
+      clearInput,
+      handleOnKeyDown,
       handleOnBlur,
       changeCodeAtFocus,
       focusInput,
@@ -117,6 +144,7 @@ export default defineComponent({
       focusPrevInput,
       handleOnFocus,
       checkFilledAllInputs,
+      handleOnChange,
     };
   },
 });
