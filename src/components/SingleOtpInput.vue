@@ -2,7 +2,7 @@
   <div>
     <input
       :type="inputType"
-      ref="input"
+      ref="inputSingle"
       min="0"
       max="9"
       maxlength="1"
@@ -11,15 +11,17 @@
       :class="inputClasses"
       @input="handleOnChange"
       @keydown="handleOnKeyDown"
-    />
-    <!-- @paste="handleOnPaste"
+      @paste="handleOnPaste"
       @focus="handleOnFocus"
-      @blur="handleOnBlur" -->
+      @blur="handleOnBlur"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import {
+  defineComponent, onMounted, ref, Ref,
+} from 'vue';
 
 export default defineComponent({
   name: 'SingleOtpInput',
@@ -49,6 +51,7 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const model = ref(props.value || '');
+    const inputSingle = ref<HTMLInputElement | null>(null) as Ref<HTMLInputElement>;
 
     const handleOnChange = () => {
       if (model.value.length > 1) {
@@ -58,6 +61,7 @@ export default defineComponent({
     };
 
     const isCodeNumeric = (charCode: number) => (charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 105);
+    // numeric keys and numpad keys
 
     const handleOnKeyDown = (event: KeyboardEvent) => {
       // Only allow characters 0-9, DEL, Backspace and Pasting
@@ -75,18 +79,26 @@ export default defineComponent({
       }
     };
 
-    //  const  handleOnPaste = (event: KeyboardEvent) => {
-    //     return emit('on-paste', event);
-    //   },
-    //  const handleOnFocus = () =>{
-    //     this.$refs.input.select();
-    //     return emit('on-focus');
-    //   },
-    //   const handleOnBlur = () => {
-    //     return $emit('on-blur');
-    //   },
+    const handleOnPaste = (event: KeyboardEvent) => emit('on-paste', event);
 
-    return { handleOnChange, handleOnKeyDown, model };
+    const handleOnFocus = () => {
+      inputSingle.value.select();
+      return emit('on-focus');
+    };
+    onMounted(() => {
+      console.log(inputSingle.value);
+    });
+    const handleOnBlur = () => emit('on-blur');
+
+    return {
+      handleOnChange,
+      handleOnKeyDown,
+      handleOnPaste,
+      handleOnFocus,
+      handleOnBlur,
+      inputSingle,
+      model,
+    };
   },
 });
 </script>

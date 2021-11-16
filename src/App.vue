@@ -1,16 +1,16 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <SingleOtpInput />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import SingleOtpInput from '@/components/SingleOtpInput.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld,
+    SingleOtpInput,
   },
 });
 </script>
