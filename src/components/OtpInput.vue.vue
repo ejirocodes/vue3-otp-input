@@ -1,5 +1,28 @@
 <template>
-  <div><SingleOtpInput /></div>
+  <div style="display: flex">
+<!--    To turn off autocomplete when otp-input is password-->
+    <input v-if="inputType === 'password'"
+           autocomplete="off"
+           name="hidden"
+           type="text"
+           style="display:none;">
+    <SingleOtpInput
+      v-for="(item, i) in numInputs"
+      :key="i"
+      :focus="activeInput === i"
+      :value="otp[i]"
+      :separator="separator"
+      :input-type="inputType"
+      :input-classes="inputClasses"
+      :is-last-child="i === numInputs - 1"
+      :should-auto-focus="shouldAutoFocus"
+      @on-change="handleOnChange"
+      @on-keydown="handleOnKeyDown"
+      @on-paste="handleOnPaste"
+      @on-focus="handleOnFocus(i)"
+      @on-blur="handleOnBlur"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -108,34 +131,36 @@ export default defineComponent({
 
     // Handle cases of backspace, delete, left arrow, right arrow
     const handleOnKeyDown = (event: KeyboardEvent) => {
-      switch (event.keyCode) {
-        case BACKSPACE:
-          event.preventDefault();
-          changeCodeAtFocus('');
-          focusPrevInput();
-          break;
-        case DELETE:
-          event.preventDefault();
-          changeCodeAtFocus('');
-          break;
-        case LEFT_ARROW:
-          event.preventDefault();
-          focusPrevInput();
-          break;
-        case RIGHT_ARROW:
-          event.preventDefault();
-          focusNextInput();
-          break;
-        default:
-          break;
-      }
-    },;
+      console.log(event)
+      // switch (event.keyCode) {
+        // case BACKSPACE:
+        //   event.preventDefault();
+        //   changeCodeAtFocus('');
+        //   focusPrevInput();
+        //   break;
+        // case DELETE:
+        //   event.preventDefault();
+        //   changeCodeAtFocus('');
+        //   break;
+        // case LEFT_ARROW:
+        //   event.preventDefault();
+        //   focusPrevInput();
+        //   break;
+        // case RIGHT_ARROW:
+        //   event.preventDefault();
+        //   focusNextInput();
+        //   break;
+        // default:
+        //   break;
+      // }
+    };
 
     return {
       activeInput,
       otp,
       oldOtp,
       clearInput,
+      handleOnPaste,
       handleOnKeyDown,
       handleOnBlur,
       changeCodeAtFocus,
