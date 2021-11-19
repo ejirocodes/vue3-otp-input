@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div style="display: flex; align-items: center;">
     <input
       :type="inputType"
-      ref="inputSingle"
+      ref="input"
       min="0"
       max="9"
       maxlength="1"
@@ -15,11 +15,14 @@
       @focus="handleOnFocus"
       @blur="handleOnBlur"
     />
+    <button @click="input.focus()">Focus</button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, Ref } from 'vue';
+import {
+  defineComponent, onMounted, ref, Ref,
+} from 'vue';
 
 export default defineComponent({
   name: 'SingleOtpInput',
@@ -47,9 +50,10 @@ export default defineComponent({
       type: Boolean,
     },
   },
+  emits: ['on-change', 'on-keydown', 'on-paste', 'on-focus', 'on-blur'],
   setup(props, { emit }) {
     const model = ref(props.value || '');
-    const inputSingle = ref<HTMLInputElement | null>(null) as Ref<HTMLInputElement>;
+    const input = ref<HTMLInputElement | null>(null) as Ref<HTMLInputElement>;
 
     const handleOnChange = () => {
       if (model.value.length > 1) {
@@ -62,15 +66,10 @@ export default defineComponent({
     // numeric keys and numpad keys
 
     const handleOnKeyDown = (event: KeyboardEvent) => {
-      // Only allow characters 0-9, DEL, Backspace and Pasting
+      // Only allow characters 0-9, DEL, Backspace, Enter, Right and Left Arrows, and Pasting
       const keyEvent = event || window.event;
       const charCode = keyEvent.which ? keyEvent.which : keyEvent.keyCode;
-      if (
-        isCodeNumeric(charCode)
-        || charCode === 8
-        || charCode === 86
-        || charCode === 46
-      ) {
+      if (isCodeNumeric(charCode) || [8, 9, 13, 37, 39, 46, 86].includes(charCode)) {
         emit('on-keydown', event);
       } else {
         keyEvent.preventDefault();
@@ -80,11 +79,18 @@ export default defineComponent({
     const handleOnPaste = (event: KeyboardEvent) => emit('on-paste', event);
 
     const handleOnFocus = () => {
-      inputSingle.value.select();
+      input.value.select();
       return emit('on-focus');
     };
 
     const handleOnBlur = () => emit('on-blur');
+
+    onMounted(() => {
+      if (input.value && props.focus && props.shouldAutoFocus) {
+        input.value.focus();
+        input.value.select();
+      }
+    });
 
     return {
       handleOnChange,
@@ -92,7 +98,7 @@ export default defineComponent({
       handleOnPaste,
       handleOnFocus,
       handleOnBlur,
-      inputSingle,
+      input,
       model,
     };
   },

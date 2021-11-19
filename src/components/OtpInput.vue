@@ -1,11 +1,13 @@
 <template>
   <div style="display: flex">
-<!--    To turn off autocomplete when otp-input is password-->
-    <input v-if="inputType === 'password'"
-           autocomplete="off"
-           name="hidden"
-           type="text"
-           style="display:none;">
+    <!--    To turn off autocomplete when otp-input is password-->
+    <input
+      v-if="inputType === 'password'"
+      autocomplete="off"
+      name="hidden"
+      type="text"
+      style="display: none"
+    />
     <SingleOtpInput
       v-for="(item, i) in numInputs"
       :key="i"
@@ -16,17 +18,18 @@
       :input-classes="inputClasses"
       :is-last-child="i === numInputs - 1"
       :should-auto-focus="shouldAutoFocus"
-      @on-change="handleOnChange"
+      @on-change="handleOnChange($event)"
       @on-keydown="handleOnKeyDown"
       @on-paste="handleOnPaste"
       @on-focus="handleOnFocus(i)"
       @on-blur="handleOnBlur"
     />
+    {{ activeInput }}
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, toRaw } from 'vue';
 import SingleOtpInput from './SingleOtpInput.vue';
 
 // keyCode constants
@@ -53,9 +56,7 @@ export default defineComponent({
     },
     inputType: {
       type: String,
-      validator(value: string) {
-        return ['number', 'tel', 'password'].includes(value);
-      },
+      validator: (value: string) => ['number', 'tel', 'password'].includes(value),
     },
     shouldAutoFocus: {
       type: Boolean,
@@ -98,7 +99,13 @@ export default defineComponent({
     // Change OTP value at focused input
     const changeCodeAtFocus = (value: number | string) => {
       oldOtp.value = Object.assign([], otp.value);
-      this.$set(otp.value, activeInput.value, value);
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      otp.value[activeInput.value] = value;
+
+      // this.$set(otp.value, activeInput.value, value);
+
       if (oldOtp.value.join('') !== otp.value.join('')) {
         emit('on-change', otp.value.join(''));
         checkFilledAllInputs();
@@ -106,7 +113,8 @@ export default defineComponent({
     };
 
     // Handle pasted OTP
-    const handleOnPaste = (event: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleOnPaste = (event: ClipboardEvent | any) => {
       event.preventDefault();
       const pastedData = event.clipboardData
         .getData('text/plain')
@@ -118,12 +126,15 @@ export default defineComponent({
       // Paste data from focused input onwards
       const currentCharsInOtp = otp.value.slice(0, activeInput.value);
       const combinedWithPastedData = currentCharsInOtp.concat(pastedData);
-      this.$set(this, 'otp', combinedWithPastedData.slice(0, props.numInputs));
+
+      // this.$set(this, 'otp', combinedWithPastedData.slice(0, props.numInputs));
       focusInput(combinedWithPastedData.slice(0, props.numInputs).length);
       return checkFilledAllInputs();
     };
 
     const handleOnChange = (value: number) => {
+      console.log('on-change', value);
+
       changeCodeAtFocus(value);
       focusNextInput();
     };
