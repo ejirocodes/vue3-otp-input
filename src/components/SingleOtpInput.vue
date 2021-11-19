@@ -15,13 +15,12 @@
       @focus="handleOnFocus"
       @blur="handleOnBlur"
     />
-    <button @click="input.focus()">Focus</button>
   </div>
 </template>
 
 <script lang="ts">
 import {
-  defineComponent, onMounted, ref, Ref,
+  defineComponent, onMounted, ref, Ref, watch,
 } from 'vue';
 
 export default defineComponent({
@@ -84,6 +83,22 @@ export default defineComponent({
     };
 
     const handleOnBlur = () => emit('on-blur');
+
+    watch(() => props.value, (newValue, oldValue) => {
+      if (newValue !== oldValue) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+        model.value = newValue;
+      }
+    });
+    watch(() => props.focus, (newFocusValue, oldFocusValue) => {
+      // Check if focusedInput changed
+      // Prevent calling function if input already in focus
+      if (oldFocusValue !== newFocusValue && (input.value && props.focus)) {
+        input.value.focus();
+        input.value.select();
+      }
+    });
 
     onMounted(() => {
       if (input.value && props.focus && props.shouldAutoFocus) {

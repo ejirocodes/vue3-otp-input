@@ -127,14 +127,13 @@ export default defineComponent({
       const currentCharsInOtp = otp.value.slice(0, activeInput.value);
       const combinedWithPastedData = currentCharsInOtp.concat(pastedData);
 
+      // TODO: Check if pasted data is valid
       // this.$set(this, 'otp', combinedWithPastedData.slice(0, props.numInputs));
       focusInput(combinedWithPastedData.slice(0, props.numInputs).length);
       return checkFilledAllInputs();
     };
 
     const handleOnChange = (value: number) => {
-      console.log('on-change', value);
-
       changeCodeAtFocus(value);
       focusNextInput();
     };
