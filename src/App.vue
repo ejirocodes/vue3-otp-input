@@ -25,10 +25,10 @@ export default defineComponent({
   },
   setup() {
     const handleOnComplete = (value: string) => {
-      // console.log('OTP completed: ', value);
+      console.log('OTP completed: ', value);
     };
     const handleOnChange = (value: string) => {
-      // console.log('OTP changed: ', value);
+      console.log('OTP changed: ', value);
     };
 
     return { handleOnComplete, handleOnChange };

@@ -24,12 +24,11 @@
       @on-focus="handleOnFocus(i)"
       @on-blur="handleOnBlur"
     />
-    {{ activeInput }}
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, toRaw } from 'vue';
+import { defineComponent, ref } from 'vue';
 import SingleOtpInput from './SingleOtpInput.vue';
 
 // keyCode constants
