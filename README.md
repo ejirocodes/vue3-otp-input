@@ -164,4 +164,4 @@ Please adhere to this project's `code of conduct`.
 
 ## Appendix
 
-This component is a rewite of the original [vue-otp-input](https://github.com/bachdgvn/vue-otp-input) component to support Vue 3.x and Vue Composition API. Feel free to use it in your project and .
+This component is a rewite of the original [vue-otp-input](https://github.com/bachdgvn/vue-otp-input) component to support Vue 3.x and Vue Composition API. Feel free to use it in your project, report bugs and make PR 👏🏽.
