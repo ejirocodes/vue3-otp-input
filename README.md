@@ -1,6 +1,6 @@
 # vue-otp-input
 
-> A fully customizable, OTP (one-time password) input component built with Vue 3.x and Vue Composition API.
+> A fully customizable, OTP (one-time-password) input component built with Vue 3.x and Vue Composition API.
 
 ![Gifphy](https://media.giphy.com/media/W4RTzsjgQF447EfNPX/giphy.gif)
 
