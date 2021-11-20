@@ -4,8 +4,6 @@
 
 ![Gifphy](https://media.giphy.com/media/W4RTzsjgQF447EfNPX/giphy.gif)
 
-[Live Demo](https://zlx025mxpp.codesandbox.io/)
-
 ## Installation
 
 To install the latest stable version:
