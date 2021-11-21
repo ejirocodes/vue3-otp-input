@@ -31,13 +31,21 @@ export default defineComponent({
     'v-otp-input': OtpInput,
   },
   setup() {
+    const otpInput = ref(null)
+
     const handleOnComplete = (value: string) => {
       console.log('OTP completed: ', value);
     };
+
     const handleOnChange = (value: string) => {
       console.log('OTP changed: ', value);
     };
-    return { handleOnComplete, handleOnChange };
+
+     const clearInput = () => {
+      otpInput.value.clearInput()
+    }
+
+    return { handleOnComplete, handleOnChange, clearInput, otpInput };
   },
 });
 </script>
@@ -54,8 +62,8 @@ export default defineComponent({
       @on-change="handleOnChange"
       @on-complete="handleOnComplete"
     />
-
   </div>
+  <button @click="clearInput()">Clear Input</button>
 </template>
 
 
