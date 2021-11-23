@@ -1,6 +1,6 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import SingleOtpInput from './SingleOtpInput.vue';
+import { defineComponent, ref } from "vue";
+import SingleOtpInput from "./SingleOtpInput.vue";
 
 // keyCode constants
 const BACKSPACE = 8;
@@ -8,8 +8,8 @@ const LEFT_ARROW = 37;
 const RIGHT_ARROW = 39;
 const DELETE = 46;
 
-export default /* #__PURE__ */defineComponent({
-  name: 'Vue3OtpInput', // vue component name
+export default /* #__PURE__ */ defineComponent({
+  name: "Vue3OtpInput", // vue component name
   components: {
     SingleOtpInput,
   },
@@ -19,14 +19,15 @@ export default /* #__PURE__ */defineComponent({
     },
     separator: {
       type: String,
-      default: '**',
+      default: "**",
     },
     inputClasses: {
       type: String,
     },
     inputType: {
       type: String,
-      validator: (value: string) => ['number', 'tel', 'password'].includes(value),
+      validator: (value: string) =>
+        ["number", "tel", "password"].includes(value),
     },
     shouldAutoFocus: {
       type: Boolean,
@@ -47,10 +48,10 @@ export default /* #__PURE__ */defineComponent({
 
     // Helper to return OTP from input
     const checkFilledAllInputs = () => {
-      if (otp.value.join('').length === props.numInputs) {
-        return emit('on-complete', otp.value.join(''));
+      if (otp.value.join("").length === props.numInputs) {
+        return emit("on-complete", otp.value.join(""));
       }
-      return 'Wait until the user enters the required number of characters';
+      return "Wait until the user enters the required number of characters";
     };
 
     // Focus on input by index
@@ -76,29 +77,38 @@ export default /* #__PURE__ */defineComponent({
 
       // this.$set(otp.value, activeInput.value, value);
 
-      if (oldOtp.value.join('') !== otp.value.join('')) {
-        emit('on-change', otp.value.join(''));
+      if (oldOtp.value.join("") !== otp.value.join("")) {
+        emit("on-change", otp.value.join(""));
         checkFilledAllInputs();
       }
     };
 
     // Handle pasted OTP
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleOnPaste = (event: ClipboardEvent | any) => {
+    const handleOnPaste = (event: any) => {
       event.preventDefault();
+      // console.log(event);
+
       const pastedData = event.clipboardData
-        .getData('text/plain')
+        .getData("text/plain")
         .slice(0, props.numInputs - activeInput.value)
-        .split('');
-      if (props.inputType === 'number' && !pastedData.join('').match(/^\d+$/)) {
-        return 'Invalid pasted data';
+        .split("");
+      if (props.inputType === "number" && !pastedData.join("").match(/^\d+$/)) {
+        console.log("Invalid input");
+
+        return "Invalid pasted data";
       }
       // Paste data from focused input onwards
       const currentCharsInOtp = otp.value.slice(0, activeInput.value);
       const combinedWithPastedData = currentCharsInOtp.concat(pastedData);
 
-      // TODO: Check if pasted data is valid
-      // this.$set(this, 'otp', combinedWithPastedData.slice(0, props.numInputs));
+      combinedWithPastedData
+        .slice(0, props.numInputs)
+        .forEach(function (value, i) {
+          otp.value[i] = value;
+          console.log(otp.value);
+        });
+
       focusInput(combinedWithPastedData.slice(0, props.numInputs).length);
       return checkFilledAllInputs();
     };
@@ -109,7 +119,7 @@ export default /* #__PURE__ */defineComponent({
     };
     const clearInput = () => {
       if (otp.value.length > 0) {
-        emit('on-change', '');
+        emit("on-change", "");
       }
       otp.value = [];
       activeInput.value = 0;
@@ -120,12 +130,12 @@ export default /* #__PURE__ */defineComponent({
       switch (event.keyCode) {
         case BACKSPACE:
           event.preventDefault();
-          changeCodeAtFocus('');
+          changeCodeAtFocus("");
           focusPrevInput();
           break;
         case DELETE:
           event.preventDefault();
-          changeCodeAtFocus('');
+          changeCodeAtFocus("");
           break;
         case LEFT_ARROW:
           event.preventDefault();
@@ -190,5 +200,4 @@ export default /* #__PURE__ */defineComponent({
 </template>
 
 <style scoped>
-
 </style>
