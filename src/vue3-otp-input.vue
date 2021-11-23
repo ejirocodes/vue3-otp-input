@@ -84,18 +84,13 @@ export default /* #__PURE__ */ defineComponent({
     };
 
     // Handle pasted OTP
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleOnPaste = (event: any) => {
       event.preventDefault();
-      // console.log(event);
-
       const pastedData = event.clipboardData
         .getData("text/plain")
         .slice(0, props.numInputs - activeInput.value)
         .split("");
       if (props.inputType === "number" && !pastedData.join("").match(/^\d+$/)) {
-        console.log("Invalid input");
-
         return "Invalid pasted data";
       }
       // Paste data from focused input onwards
@@ -106,7 +101,6 @@ export default /* #__PURE__ */ defineComponent({
         .slice(0, props.numInputs)
         .forEach(function (value, i) {
           otp.value[i] = value;
-          console.log(otp.value);
         });
 
       focusInput(combinedWithPastedData.slice(0, props.numInputs).length);

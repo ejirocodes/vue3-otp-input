@@ -1,18 +1,18 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Vue3OtpInput from '@/vue3-otp-input.vue';
+import { defineComponent } from "vue";
+import Vue3OtpInput from "@/vue3-otp-input.vue";
 
 export default defineComponent({
-  name: 'ServeDev',
+  name: "ServeDev",
   components: {
     Vue3OtpInput,
   },
   setup() {
     const handleOnComplete = (value: string) => {
-      console.log('OTP completed: ', value);
+      console.log("OTP completed: ", value);
     };
     const handleOnChange = (value: string) => {
-      console.log('OTP changed: ', value);
+      console.log("OTP changed: ", value);
     };
 
     return { handleOnComplete, handleOnChange };
@@ -22,18 +22,18 @@ export default defineComponent({
 
 <template>
   <div id="app">
-      <div style="display: flex; flex-direction: row">
-
-    <vue3-otp-input
-      ref="otpInput0"
-      input-classes="otp-input"
-      separator="-"
-      :num-inputs="4"
-      :focus="true"
-      :should-auto-focus="true"
-      @on-change="handleOnChange"
-      @on-complete="handleOnComplete"
-    />
+    <div style="display: flex; flex-direction: row">
+      <vue3-otp-input
+        ref="otpInput0"
+        input-classes="otp-input"
+        separator="-"
+        inputType="number"
+        :num-inputs="4"
+        :focus="true"
+        :should-auto-focus="true"
+        @on-change="handleOnChange"
+        @on-complete="handleOnComplete"
+      />
     </div>
   </div>
 </template>
