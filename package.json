@@ -1,6 +1,6 @@
 {
   "name": "vue3-otp-input",
-  "version": "0.1.1",
+  "version": "0.1.12",
   "description": "A fully customizable, OTP (one-time password) input component built with Vue 3.x and Vue Composition API.",
   "author": "Ejiro Asiuwhu <ejiroasiuwhu10@gmail.com>",
   "repository": "https://github.com/ejirocodes/otp-vue-3",
@@ -12,7 +12,14 @@
     "vue composition API",
     "otp",
     "input",
-    "otp input"
+    "otp input",
+    "one-time password",
+    "one time password",
+    "one time password input",
+    "one time password input component",
+    "one time password input component built with vue",
+    "one time password input component built with vue 3",
+    "vue split input"
   ],
   "license": "MIT",
   "main": "dist/vue3-otp-input.ssr.js",

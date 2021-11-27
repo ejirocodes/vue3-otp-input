@@ -4,9 +4,7 @@
 
 ## Demo
 
-<video src='./demo.mov' alt="demo" />
-
-<!-- ![Gifphy](https://media.giphy.com/media/W4RTzsjgQF447EfNPX/giphy.gif) -->
+![Gifphy](https://media.giphy.com/media/Db04PkC7vMzqksOpq6/giphy.gif)
 
 ## Installation
 
