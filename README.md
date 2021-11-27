@@ -20,15 +20,18 @@ yarn add vue3-otp-input
 
 Code example:
 
+### 1/3. Register as a Vue component locally OR
+
 ```javascript
 
 <script>
-import OtpInput from 'vue3-otp-input';
+// Import in a Vue component
+import VOtpInput from 'vue3-otp-input';
 
 export default defineComponent({
   name: 'App',
   components: {
-    'v-otp-input': OtpInput,
+    VOtpInput,
   },
   setup() {
     const otpInput = ref(null)
@@ -50,9 +53,29 @@ export default defineComponent({
 });
 </script>
 
+```
+
+### 1/3. Register as a Vue component globally
+
+```js
+//  main.js or main.ts
+import { createApp } from 'vue'
+import App from './App.vue'
+
+import VOtpInput from "vue3-otp-input";
+
+const app = createApp(App)
+
+app.component('v-otp-input', VOtpInput).mount('#app')
+
+```
+
+### 2/3. Use the registered component in your Vue template
+
+```html
 <template>
   <div style="display: flex; flex-direction: row;">
-    <OtpInput
+    <v-otp-input
       ref="otpInput"
       input-classes="otp-input"
       separator="-"
@@ -65,8 +88,11 @@ export default defineComponent({
   </div>
   <button @click="clearInput()">Clear Input</button>
 </template>
+```
 
+### 3/3 [Optional]. Some basic styling options
 
+```css
 <style>
 .otp-input {
   width: 40px;
@@ -137,7 +163,7 @@ export default defineComponent({
   </tr>
   <tr>
      <td>clearInput()</td>
-     <td>Use with $refs for clearing all otp inputs, see code example section.</td>
+     <td>Use with ref for clearing all otp inputs, see code example section.</td>
   </tr>
 </table>
 
