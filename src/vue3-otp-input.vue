@@ -75,8 +75,6 @@ export default /* #__PURE__ */ defineComponent({
       // @ts-ignore
       otp.value[activeInput.value] = value;
 
-      // this.$set(otp.value, activeInput.value, value);
-
       if (oldOtp.value.join("") !== otp.value.join("")) {
         emit("on-change", otp.value.join(""));
         checkFilledAllInputs();
