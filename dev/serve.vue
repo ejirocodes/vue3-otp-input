@@ -27,7 +27,7 @@ export default defineComponent({
         ref="otpInput0"
         input-classes="otp-input"
         separator="-"
-        inputType="number"
+        inputType="tel"
         :num-inputs="4"
         :focus="true"
         :should-auto-focus="true"
