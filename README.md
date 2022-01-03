@@ -159,14 +159,14 @@ app.component('v-otp-input', VOtpInput).mount('#app')
     <td>array</td>
     <td>false</td>
     <td>[]</td>
-    <td>Specify an expected value of each input. The length of this array should be equal to <code>num-inputs</code>.</td>
+    <td>Specify an expected value for each input. Example: <code>:placeholder="['*', '*', '*', '*']"</code>. The length of this array should be equal to <code>num-inputs</code>.</td>
   </tr>
   <tr>
     <td>is-disabled</td>
     <td>boolean</td>
     <td>false</td>
     <td>false</td>
-    <td>Disables all the inputs.</td>
+    <td>Disables all the input fields.</td>
   </tr>
 </table>
 
