@@ -2,6 +2,8 @@
   <div style="display: flex; align-items: center;">
     <input
       :type="inputType"
+      :placeholder="placeholder"
+      :disabled="isDisabled"
       ref="input"
       min="0"
       max="9"
@@ -15,6 +17,9 @@
       @focus="handleOnFocus"
       @blur="handleOnBlur"
     />
+    <span v-if="!isLastChild && separator">
+      <span v-html="separator"></span>
+    </span>
   </div>
 </template>
 
@@ -48,6 +53,12 @@ export default defineComponent({
     isLastChild: {
       type: Boolean,
     },
+    placeholder: {
+      type: String,
+    },
+    isDisabled: {
+      type: Boolean,
+    },
   },
   emits: ['on-change', 'on-keydown', 'on-paste', 'on-focus', 'on-blur'],
   setup(props, { emit }) {
@@ -55,9 +66,10 @@ export default defineComponent({
     const input = ref<HTMLInputElement | null>(null) as Ref<HTMLInputElement>;
 
     const handleOnChange = () => {
-      // if (model.value.length > 1) {
-      //   model.value = model.value.slice(0, 1);
-      // }
+      model.value = model.value.toString();
+      if (model.value.length > 1) {
+        model.value = model.value.slice(0, 1);
+      }
       return emit('on-change', model.value);
     };
 
@@ -65,6 +77,9 @@ export default defineComponent({
     // numeric keys and numpad keys
 
     const handleOnKeyDown = (event: KeyboardEvent) => {
+      if (props.isDisabled) {
+        event.preventDefault();
+      }
       // Only allow characters 0-9, DEL, Backspace, Enter, Right and Left Arrows, and Pasting
       const keyEvent = event || window.event;
       const charCode = keyEvent.which ? keyEvent.which : keyEvent.keyCode;

@@ -154,6 +154,20 @@ app.component('v-otp-input', VOtpInput).mount('#app')
     <td>false</td>
     <td>Auto focuses input on inital page load.</td>
   </tr>
+  <tr>
+    <td>placeholder</td>
+    <td>array</td>
+    <td>false</td>
+    <td>[]</td>
+    <td>Specify an expected value of each input. The length of this array should be equal to <code>num-inputs</code>.</td>
+  </tr>
+  <tr>
+    <td>is-disabled</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>false</td>
+    <td>Disables all the inputs.</td>
+  </tr>
 </table>
 
 ## Methods
