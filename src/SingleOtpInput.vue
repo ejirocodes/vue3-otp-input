@@ -58,9 +58,10 @@ export default defineComponent({
     const input = ref<HTMLInputElement | null>(null) as Ref<HTMLInputElement>;
 
     const handleOnChange = () => {
-      // if (model.value.length > 1) {
-      //   model.value = model.value.slice(0, 1);
-      // }
+      model.value = model.value.toString();
+      if (model.value.length > 1) {
+        model.value = model.value.slice(0, 1);
+      }
       return emit('on-change', model.value);
     };
 
