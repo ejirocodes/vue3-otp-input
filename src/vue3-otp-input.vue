@@ -33,6 +33,14 @@ export default /* #__PURE__ */ defineComponent({
       type: Boolean,
       default: false,
     },
+    placeholder: {
+      type: Array,
+      default: [],
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { emit }) {
     const activeInput = ref<number>(0);
@@ -182,6 +190,8 @@ export default /* #__PURE__ */ defineComponent({
       :input-classes="inputClasses"
       :is-last-child="i === (numInputs - 1)"
       :should-auto-focus="shouldAutoFocus"
+      :placeholder="placeholder[i]"
+      :is-disabled="isDisabled"
       @on-change="handleOnChange"
       @on-keydown="handleOnKeyDown"
       @on-paste="handleOnPaste"
