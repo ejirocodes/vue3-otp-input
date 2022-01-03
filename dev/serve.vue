@@ -27,12 +27,12 @@ export default defineComponent({
         ref="otpInput0"
         input-classes="otp-input"
         separator="-"
-        inputType="tel"
+        inputType="number"
         :num-inputs="4"
-        :focus="true"
         :should-auto-focus="true"
         @on-change="handleOnChange"
         @on-complete="handleOnComplete"
+        :placeholder="['*', '*', '*', '*']"
       />
     </div>
   </div>
@@ -56,5 +56,10 @@ export default defineComponent({
 .otp-input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+input::placeholder {
+  font-size: 15px;
+  text-align: center;
+  font-weight: 600;
 }
 </style>
