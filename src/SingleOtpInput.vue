@@ -15,6 +15,9 @@
       @focus="handleOnFocus"
       @blur="handleOnBlur"
     />
+    <span v-if="!isLastChild && separator">
+      <span v-html="separator"></span>
+    </span>
   </div>
 </template>
 
