@@ -2,11 +2,11 @@
 
 > Vue 3 OTP Input is a 5.0 KB fully customizable OTP (one-time password) input component for OTPs, transaction pins, and passwords built with Vue 3.x and Vue Composition API..
 
-## Demo
+## 📹 Demo
 
 ![Gifphy](https://media.giphy.com/media/Db04PkC7vMzqksOpq6/giphy.gif)
 
-## Installation
+## ⚙️ Installation
 
 To install the latest stable version:
 
@@ -20,7 +20,6 @@ OR
 yarn add vue3-otp-input
 ```
 
-Code example:
 
 ## 📖 Usage
 
@@ -112,7 +111,7 @@ app.component('v-otp-input', VOtpInput).mount('#app')
 </style>
 ```
 
-## ⚙️ Props
+## 🍔 Props
 
 <table>
   <tr>
