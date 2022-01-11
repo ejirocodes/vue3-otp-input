@@ -112,7 +112,7 @@ app.component('v-otp-input', VOtpInput).mount('#app')
 </style>
 ```
 
-## Props
+## ⚙️ Props
 
 <table>
   <tr>
@@ -173,7 +173,7 @@ app.component('v-otp-input', VOtpInput).mount('#app')
   </tr>
 </table>
 
-## Methods
+## 🤺 Methods
 
 <table>
   <tr>
@@ -186,7 +186,7 @@ app.component('v-otp-input', VOtpInput).mount('#app')
   </tr>
 </table>
 
-## Events
+## 🐴 Events
 
 <table>
   <tr>
@@ -203,11 +203,11 @@ app.component('v-otp-input', VOtpInput).mount('#app')
   </tr>
 </table>
 
-## License
+## 🤟🏽 License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-## Contributing
+## 📓 Contributing
 
 Contributions are always welcome!
 
@@ -215,6 +215,6 @@ See `contributing.md` for ways to get started.
 
 Please adhere to this project's `code of conduct`.
 
-## Appendix
+## 🧸 Appendix
 
-This component is a rewite of the original [vue-otp-input](https://github.com/bachdgvn/vue-otp-input) component to support Vue 3.x and Vue Composition API. Feel free to use it in your project, report bugs and make PR 👏🏽.
+This component is a rewite of [vue-otp-input](https://github.com/bachdgvn/vue-otp-input) component to support Vue 3.x. Feel free to use it in your project, report bugs and make PR 👏🏽.
