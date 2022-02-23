@@ -23,8 +23,8 @@
   ],
   "license": "MIT",
   "main": "dist/vue3-otp-input.ssr.js",
-  "browser": "dist/vue3-otp-input.esm.js",
-  "module": "dist/vue3-otp-input.esm.js",
+  "browser": "dist/vue3-otp-input.esm.mjs",
+  "module": "dist/vue3-otp-input.esm.mjs",
   "unpkg": "dist/vue3-otp-input.min.js",
   "types": "dist/types/src/entry.esm.d.ts",
   "files": [
