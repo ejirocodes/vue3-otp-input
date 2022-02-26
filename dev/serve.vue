@@ -1,6 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Vue3OtpInput from "@/vue3-otp-input.vue";
+// @ts-ignore
+// import Vue3OtpInput from "../dist/vue3-otp-input.esm.js";
 
 export default defineComponent({
   name: "ServeDev",
