@@ -13,7 +13,7 @@
       :class="inputClasses"
       @input="handleOnChange"
       @keydown="handleOnKeyDown"
-      @paste="handleOnPaste($event as ClipboardEvent)"
+      @paste="handleOnPaste"
       @focus="handleOnFocus"
       @blur="handleOnBlur"
     />
@@ -105,9 +105,7 @@ export default defineComponent({
       () => props.value,
       (newValue, oldValue) => {
         if (newValue !== oldValue) {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          model.value = newValue;
+          model.value = newValue as string | number;
         }
       }
     );
