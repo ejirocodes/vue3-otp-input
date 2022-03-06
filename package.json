@@ -28,8 +28,7 @@
   "unpkg": "dist/vue3-otp-input.min.js",
   "types": "dist/types/src/entry.esm.d.ts",
   "files": [
-    "dist/*",
-    "src/**/*.vue"
+    "dist/*"
   ],
   "sideEffects": false,
   "readme": "README.md",
@@ -71,7 +70,7 @@
     "vue": "^3.0.5"
   },
   "peerDependencies": {
-    "vue": "^3.0.5"
+    "vue": "^3.0.*"
   },
   "engines": {
     "node": ">=14",
