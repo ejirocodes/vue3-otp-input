@@ -10,21 +10,27 @@
 
 To install the latest stable version:
 
-```
+```sh
 npm i vue3-otp-input
 ```
 
 OR
 
-```
+```sh
 yarn add vue3-otp-input
 ```
 
+OR
+
+Without Build Tools
+
+```sh
+<script src="https://unpkg.com/vue3-otp-input"></script>
+```
 
 ## 📖 Usage
 
-
-#### 1/3. Register as a Vue component locally OR
+### 1/3. Register as a Vue component locally OR
 
 ```javascript
 
@@ -59,7 +65,7 @@ export default defineComponent({
 
 ```
 
-#### 1/3. Register as a Vue component globally
+### 1/3. Register as a Vue component globally
 
 ```js
 //  main.js or main.ts
@@ -74,7 +80,7 @@ app.component('v-otp-input', VOtpInput).mount('#app')
 
 ```
 
-#### 2/3. Use the registered component in your Vue template
+### 2/3. Use the registered component in your Vue template
 
 ```html
 <template>
@@ -94,7 +100,7 @@ app.component('v-otp-input', VOtpInput).mount('#app')
 </template>
 ```
 
-#### 3/3 [Optional]. Some basic styling options
+### 3/3 [Optional]. Some basic styling options
 
 ```css
 <style>
