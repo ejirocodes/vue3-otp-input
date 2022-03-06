@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, PropType } from "vue";
 import SingleOtpInput from "./SingleOtpInput.vue";
 
 // keyCode constants
@@ -34,7 +34,7 @@ export default /* #__PURE__ */ defineComponent({
       default: false,
     },
     placeholder: {
-      type: Array,
+      type: Array as PropType<string[]>,
       default: [],
     },
     isDisabled: {
@@ -181,14 +181,14 @@ export default /* #__PURE__ */ defineComponent({
       style="display: none"
     />
     <SingleOtpInput
-      v-for="(item, i) in numInputs"
+      v-for="(_, i) in numInputs"
       :key="i"
       :focus="activeInput === i"
       :value="otp[i]"
       :separator="separator"
       :input-type="inputType"
       :input-classes="inputClasses"
-      :is-last-child="i === (numInputs - 1)"
+      :is-last-child="i === numInputs - 1"
       :should-auto-focus="shouldAutoFocus"
       :placeholder="placeholder[i]"
       :is-disabled="isDisabled"
@@ -201,5 +201,4 @@ export default /* #__PURE__ */ defineComponent({
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
