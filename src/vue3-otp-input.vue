@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref, PropType } from "vue";
-import SingleOtpInput from "./SingleOtpInput.vue";
+import SingleOtpInput from "./single-otp-input.vue";
 
 // keyCode constants
 const BACKSPACE = 8;
