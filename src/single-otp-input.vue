@@ -9,6 +9,7 @@
       max="9"
       maxlength="1"
       pattern="[0-9]"
+      inputmode="numeric"
       v-model="model"
       :class="inputClasses"
       @input="handleOnChange"
