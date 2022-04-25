@@ -92,6 +92,8 @@ app.component('v-otp-input', VOtpInput).mount('#app')
       :num-inputs="4"
       :should-auto-focus="true"
       :is-input-num="true"
+      :conditionalClass="['one', 'two', 'three', 'four']"
+      :placeholder="['*', '*', '*', '*']"
       @on-change="handleOnChange"
       @on-complete="handleOnComplete"
     />
@@ -113,6 +115,20 @@ app.component('v-otp-input', VOtpInput).mount('#app')
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   text-align: center;
+}
+/* Background colour of an input field with value */
+.otp-input.is-complete {
+  background-color: #e4e4e4;
+}
+.otp-input::-webkit-inner-spin-button,
+.otp-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input::placeholder {
+  font-size: 15px;
+  text-align: center;
+  font-weight: 600;
 }
 </style>
 ```
@@ -168,6 +184,13 @@ app.component('v-otp-input', VOtpInput).mount('#app')
     <td>false</td>
     <td>[]</td>
     <td>Specify an expected value for each input. Example: <code>:placeholder="['*', '*', '*', '*']"</code>. The length of this array should be equal to <code>num-inputs</code>.</td>
+  </tr>
+  <tr>
+    <td>conditionalClass</td>
+    <td>array</td>
+    <td>false</td>
+    <td>[]</td>
+    <td> Specify a class to be applied to each input based on the value of the input. Example: <code>:conditionalClass="['one', 'two', 'three', 'four']"</code>. The length of this array should be equal to <code>num-inputs</code>.</td>
   </tr>
   <tr>
     <td>is-disabled</td>
