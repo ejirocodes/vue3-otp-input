@@ -26,6 +26,7 @@ export default defineComponent({
       <vue3-otp-input
         ref="otpInput0"
         input-classes="otp-input"
+        :conditionalClass="['one', 'two', 'three', 'four']"
         separator="-"
         inputType="number"
         :num-inputs="4"
@@ -48,6 +49,9 @@ export default defineComponent({
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   text-align: center;
+}
+.otp-input.is-complete {
+  background-color: #e4e4e4;
 }
 .otp-input.error {
   border: 1px solid red !important;

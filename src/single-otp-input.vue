@@ -10,7 +10,7 @@
       maxlength="1"
       pattern="[0-9]"
       v-model="model"
-      :class="inputClasses"
+      :class="[inputClasses, conditionalClass, { 'is-complete': model }]"
       @input="handleOnChange"
       @keydown="handleOnKeyDown"
       @paste="handleOnPaste"
@@ -43,6 +43,9 @@ export default defineComponent({
       type: Boolean,
     },
     inputClasses: {
+      type: String,
+    },
+    conditionalClass: {
       type: String,
     },
     shouldAutoFocus: {

@@ -24,6 +24,9 @@ export default /* #__PURE__ */ defineComponent({
     inputClasses: {
       type: String,
     },
+    conditionalClass: {
+      type: Array,
+    },
     inputType: {
       type: String,
       validator: (value: string) =>
@@ -188,6 +191,7 @@ export default /* #__PURE__ */ defineComponent({
       :separator="separator"
       :input-type="inputType"
       :input-classes="inputClasses"
+      :conditionalClass="conditionalClass[i]"
       :is-last-child="i === numInputs - 1"
       :should-auto-focus="shouldAutoFocus"
       :placeholder="placeholder[i]"
@@ -199,6 +203,7 @@ export default /* #__PURE__ */ defineComponent({
       @on-blur="handleOnBlur"
     />
   </div>
+  {{ otp }}
 </template>
 
 <style scoped></style>
