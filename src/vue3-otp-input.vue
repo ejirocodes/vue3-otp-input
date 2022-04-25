@@ -25,7 +25,8 @@ export default /* #__PURE__ */ defineComponent({
       type: String,
     },
     conditionalClass: {
-      type: Array,
+      type: Array as PropType<string[]>,
+      default: [],
     },
     inputType: {
       type: String,
