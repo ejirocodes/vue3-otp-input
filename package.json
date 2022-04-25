@@ -1,6 +1,6 @@
 {
   "name": "vue3-otp-input",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "A fully customizable, OTP (one-time password) input component built with Vue 3.x and Vue Composition API.",
   "author": "Ejiro Asiuwhu <ejiroasiuwhu10@gmail.com>",
   "repository": "https://github.com/ejirocodes/otp-vue-3",
