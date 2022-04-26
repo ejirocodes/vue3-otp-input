@@ -204,7 +204,6 @@ export default /* #__PURE__ */ defineComponent({
       @on-blur="handleOnBlur"
     />
   </div>
-  {{ otp }}
 </template>
 
 <style scoped></style>
