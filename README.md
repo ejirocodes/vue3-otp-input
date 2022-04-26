@@ -103,6 +103,7 @@ app.component('v-otp-input', VOtpInput).mount('#app')
 ```
 
 ### 3/3 [Optional]. Some basic styling options
+#### This css has to go into a `<style>` tag which does not have scoped attributed
 
 ```css
 <style>
