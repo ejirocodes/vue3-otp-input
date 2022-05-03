@@ -2,6 +2,7 @@
   <div style="display: flex; align-items: center">
     <input
       :type="inputType"
+      :inputmode="inputmode"
       :placeholder="placeholder"
       :disabled="isDisabled"
       ref="input"
@@ -32,6 +33,10 @@ export default defineComponent({
     inputType: {
       type: String,
       default: "tel",
+    },
+    inputmode: {
+      type: String,
+      default: "numeric",
     },
     value: {
       type: [String, Number],

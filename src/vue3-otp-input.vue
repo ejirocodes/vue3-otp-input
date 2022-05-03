@@ -33,6 +33,12 @@ export default /* #__PURE__ */ defineComponent({
       validator: (value: string) =>
         ["number", "tel", "password"].includes(value),
     },
+    inputmode: {
+      type: String,
+      validator: (value: string) =>
+        ["numeric", "text", "tel", "none"].includes(value),
+      default: "numeric",
+    },
     shouldAutoFocus: {
       type: Boolean,
       default: false,
@@ -191,6 +197,7 @@ export default /* #__PURE__ */ defineComponent({
       :value="otp[i]"
       :separator="separator"
       :input-type="inputType"
+      :inputmode="inputmode"
       :input-classes="inputClasses"
       :conditionalClass="conditionalClass[i]"
       :is-last-child="i === numInputs - 1"

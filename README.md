@@ -171,7 +171,14 @@ input::placeholder {
       <td>false</td>
       <td>"tel"</td>
       <td>Input type. Optional value: "password", "number", "tel".</td>
-    </tr>
+  </tr>
+  <tr>
+      <td>inputmode</td>
+      <td>string</td>
+      <td>false</td>
+      <td>"numeric"</td>
+      <td>This allows a browser to display an appropriate virtual keyboard. Optional value: "numeric", "text", "tel". [Learn More](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode)</td>
+  </tr>
   <tr>
     <td>should-auto-focus</td>
     <td>boolean</td>
