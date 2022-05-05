@@ -48,7 +48,7 @@ export default defineComponent({
       type: Boolean,
     },
     inputClasses: {
-      type: String,
+      type: [String, Array as PropType<string[]>],
     },
     conditionalClass: {
       type: String,
