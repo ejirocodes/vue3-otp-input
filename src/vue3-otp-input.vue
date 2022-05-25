@@ -22,7 +22,7 @@ export default /* #__PURE__ */ defineComponent({
       default: "**",
     },
     inputClasses: {
-      type: [String, Array as PropType<string[]>],
+      type: [String, Array] as PropType<string[] | string>,
     },
     conditionalClass: {
       type: Array as PropType<string[]>,

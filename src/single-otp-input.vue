@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, Ref, watch } from "vue";
+import {defineComponent, onMounted, PropType, ref, Ref, watch} from "vue";
 
 export default defineComponent({
   name: "SingleOtpInput",
@@ -48,7 +48,7 @@ export default defineComponent({
       type: Boolean,
     },
     inputClasses: {
-      type: [String, Array as PropType<string[]>],
+      type: [String, Array] as PropType<string[] | string>,
     },
     conditionalClass: {
       type: String,
