@@ -29,9 +29,9 @@ export default /* #__PURE__ */ defineComponent({
       default: [],
     },
     inputType: {
-      type: String,
+      type: String as PropType<"number" | "tel" | "letter-numeric" | "password">,
       validator: (value: string) =>
-        ["number", "tel", "password"].includes(value),
+        ["number", "tel", "letter-numeric", "password"].includes(value),
     },
     inputmode: {
       type: String,
@@ -107,6 +107,10 @@ export default /* #__PURE__ */ defineComponent({
         .slice(0, props.numInputs - activeInput.value)
         .split("");
       if (props.inputType === "number" && !pastedData.join("").match(/^\d+$/)) {
+        return "Invalid pasted data";
+      }
+
+      if (props.inputType === "letter-numeric" && !pastedData.join("").match(/^\w+$/)) {
         return "Invalid pasted data";
       }
       // Paste data from focused input onwards

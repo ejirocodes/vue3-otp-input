@@ -28,7 +28,7 @@ export default defineComponent({
         input-classes="otp-input"
         :conditionalClass="['one', 'two', 'three', 'four']"
         separator="-"
-        inputType="number"
+        inputType="letter-numeric"
         :num-inputs="4"
         :should-auto-focus="true"
         @on-change="handleOnChange"
