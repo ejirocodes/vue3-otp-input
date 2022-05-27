@@ -103,6 +103,7 @@ app.component('v-otp-input', VOtpInput).mount('#app')
 ```
 
 ### 3/3 [Optional]. Some basic styling options
+
 #### This css has to go into a `<style>` tag which does not have scoped attributed
 
 ```css
@@ -170,7 +171,7 @@ input::placeholder {
       <td>string</td>
       <td>false</td>
       <td>"tel"</td>
-      <td>Input type. Optional value: "password", "number", "tel".</td>
+      <td>Input type. Optional value: "password", "number", "tel", "letter-numeric".</td>
   </tr>
   <tr>
       <td>inputmode</td>
