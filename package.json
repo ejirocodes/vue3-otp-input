@@ -1,6 +1,6 @@
 {
   "name": "vue3-otp-input",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "A fully customizable, OTP (one-time password) input component built with Vue 3.x and Vue Composition API.",
   "author": "Ejiro Asiuwhu <ejiroasiuwhu10@gmail.com>",
   "repository": "https://github.com/ejirocodes/vue3-otp-input",
@@ -25,13 +25,13 @@
     "vue split input"
   ],
   "license": "MIT",
-  "main": "dist/vue3-otp-input.ssr.js",
-  "browser": "dist/vue3-otp-input.esm.js",
-  "module": "dist/vue3-otp-input.esm.js",
-  "unpkg": "dist/vue3-otp-input.min.js",
-  "types": "dist/types/src/entry.esm.d.ts",
+  "main": "./dist/vue3-otp-input.ssr.js",
+  "browser": "./dist/vue3-otp-input.esm.js",
+  "module": "./dist/vue3-otp-input.esm.js",
+  "unpkg": "./dist/vue3-otp-input.min.js",
+  "types": "./dist/types/src/entry.esm.d.ts",
   "files": [
-    "dist/*"
+    "./dist/*"
   ],
   "sideEffects": false,
   "readme": "README.md",
@@ -61,7 +61,7 @@
     "@zerollup/ts-transform-paths": "^1.7.18",
     "cross-env": "^7.0.3",
     "minimist": "^1.2.5",
-    "postcss": "^8.2.10",
+    "postcss": "^8.4.14",
     "rimraf": "^3.0.2",
     "rollup": "^2.52.8",
     "rollup-plugin-postcss": "^4.0.0",
@@ -76,7 +76,7 @@
     "vue": "^3.0.*"
   },
   "engines": {
-    "node": ">=14",
-    "npm": ">=7"
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
   }
 }
