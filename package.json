@@ -1,6 +1,6 @@
 {
   "name": "vue3-otp-input",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "A fully customizable, OTP (one-time password) input component built with Vue 3.x and Vue Composition API.",
   "author": "Ejiro Asiuwhu <ejiroasiuwhu10@gmail.com>",
   "repository": "https://github.com/ejirocodes/vue3-otp-input",
@@ -25,13 +25,13 @@
     "vue split input"
   ],
   "license": "MIT",
-  "main": "./dist/vue3-otp-input.ssr.js",
-  "browser": "./dist/vue3-otp-input.esm.js",
-  "module": "./dist/vue3-otp-input.esm.js",
-  "unpkg": "./dist/vue3-otp-input.min.js",
-  "types": "./dist/types/src/entry.esm.d.ts",
+  "main": "dist/vue3-otp-input.ssr.js",
+  "browser": "dist/vue3-otp-input.esm.js",
+  "module": "dist/vue3-otp-input.esm.js",
+  "unpkg": "dist/vue3-otp-input.min.js",
+  "types": "dist/types/src/entry.esm.d.ts",
   "files": [
-    "./dist/*"
+    "dist/*"
   ],
   "sideEffects": false,
   "readme": "README.md",
