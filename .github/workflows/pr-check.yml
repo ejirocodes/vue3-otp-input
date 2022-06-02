@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: check title
         run: |
-          regex="^(feat|fix|docs|chore|style|refactor|perf|test)!?(\([^\)]+\))?:[[:space:]].+"
+          regex="^(feat|fix|docs|chore|style|refactor|perf|test|ci)!?(\([^\)]+\))?:[[:space:]].+"
           if [[ "${{ github.event.pull_request.title }}" =~ $regex ]]; then
               echo OK
           else
