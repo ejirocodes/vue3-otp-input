@@ -21,7 +21,7 @@ describe("SingleOtpInput.vue", () => {
 
     await singleInput.trigger("focus");
     await singleInput.trigger("input");
-    await singleInput.setValue(2);
+    await singleInput.setValue("2");
 
     const inputField: HTMLInputElement = wrapper.find(
       '[data-test="single-input"]'
