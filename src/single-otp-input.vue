@@ -1,6 +1,7 @@
 <template>
   <div style="display: flex; align-items: center">
     <input
+      data-test="single-input"
       :type="inputTypeValue"
       :inputmode="inputmode"
       :placeholder="placeholder"
@@ -25,15 +26,17 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, PropType, ref, Ref, watch} from "vue";
+import { defineComponent, onMounted, PropType, ref, Ref, watch } from "vue";
 
 export default defineComponent({
   name: "SingleOtpInput",
   props: {
     inputType: {
-      type: String as PropType<"number" | "tel" | "letter-numeric" | "password">,
+      type: String as PropType<
+        "number" | "tel" | "letter-numeric" | "password"
+      >,
       validator: (value: string) =>
-          ["number", "tel", "letter-numeric", "password"].includes(value),
+        ["number", "tel", "letter-numeric", "password"].includes(value),
       default: "tel",
     },
     inputmode: {
@@ -81,7 +84,7 @@ export default defineComponent({
       return emit("on-change", model.value);
     };
 
-    const isCodeLetter = (charCode: number) => (charCode >= 65 && charCode <= 90);
+    const isCodeLetter = (charCode: number) => charCode >= 65 && charCode <= 90;
     const isCodeNumeric = (charCode: number) =>
       (charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 105);
     // numeric keys and numpad keys
@@ -148,7 +151,8 @@ export default defineComponent({
       handleOnBlur,
       input,
       model,
-      inputTypeValue: props.inputType === "letter-numeric" ? "text" : props.inputType
+      inputTypeValue:
+        props.inputType === "letter-numeric" ? "text" : props.inputType,
     };
   },
 });
