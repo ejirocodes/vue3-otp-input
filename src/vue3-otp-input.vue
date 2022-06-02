@@ -26,10 +26,12 @@ export default /* #__PURE__ */ defineComponent({
     },
     conditionalClass: {
       type: Array as PropType<string[]>,
-      default: [],
+      default: () => [],
     },
     inputType: {
-      type: String as PropType<"number" | "tel" | "letter-numeric" | "password">,
+      type: String as PropType<
+        "number" | "tel" | "letter-numeric" | "password"
+      >,
       validator: (value: string) =>
         ["number", "tel", "letter-numeric", "password"].includes(value),
     },
@@ -45,7 +47,7 @@ export default /* #__PURE__ */ defineComponent({
     },
     placeholder: {
       type: Array as PropType<string[]>,
-      default: [],
+      default: () => [],
     },
     isDisabled: {
       type: Boolean,
@@ -100,9 +102,9 @@ export default /* #__PURE__ */ defineComponent({
     };
 
     // Handle pasted OTP
-    const handleOnPaste = (event: any) => {
+    const handleOnPaste = (event: ClipboardEvent) => {
       event.preventDefault();
-      const pastedData = event.clipboardData
+      const pastedData: string[] = (event.clipboardData as DataTransfer)
         .getData("text/plain")
         .slice(0, props.numInputs - activeInput.value)
         .split("");
@@ -110,11 +112,16 @@ export default /* #__PURE__ */ defineComponent({
         return "Invalid pasted data";
       }
 
-      if (props.inputType === "letter-numeric" && !pastedData.join("").match(/^\w+$/)) {
+      if (
+        props.inputType === "letter-numeric" &&
+        !pastedData.join("").match(/^\w+$/)
+      ) {
         return "Invalid pasted data";
       }
       // Paste data from focused input onwards
       const currentCharsInOtp = otp.value.slice(0, activeInput.value);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       const combinedWithPastedData = currentCharsInOtp.concat(pastedData);
 
       combinedWithPastedData
