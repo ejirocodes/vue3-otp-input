@@ -150,6 +150,13 @@ input::placeholder {
     <th>Default</th>
     <th>Description</th>
   </tr>
+    <tr>
+    <td>value</td>
+    <td>string</td>
+    <td>false</td>
+    <td>""</td>
+    <td>v-modal:value for bind dynamic value</td>
+  </tr>
   <tr>
     <td>num-inputs</td>
     <td>number</td>
