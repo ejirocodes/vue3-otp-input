@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref, PropType } from "vue";
+import { defineComponent, ref, unref, PropType, watch } from "vue";
 import SingleOtpInput from "./single-otp-input.vue";
 
 // keyCode constants
@@ -14,6 +14,11 @@ export default /* #__PURE__ */ defineComponent({
     SingleOtpInput,
   },
   props: {
+    value: {
+      type: String,
+      default: "",
+      required: true,
+    },
     numInputs: {
       default: 4,
     },
@@ -29,7 +34,9 @@ export default /* #__PURE__ */ defineComponent({
       default: [],
     },
     inputType: {
-      type: String as PropType<"number" | "tel" | "letter-numeric" | "password">,
+      type: String as PropType<
+        "number" | "tel" | "letter-numeric" | "password"
+      >,
       validator: (value: string) =>
         ["number", "tel", "letter-numeric", "password"].includes(value),
     },
@@ -54,8 +61,17 @@ export default /* #__PURE__ */ defineComponent({
   },
   setup(props, { emit }) {
     const activeInput = ref<number>(0);
-    const otp = ref<[]>([]);
-    const oldOtp = ref<[]>([]);
+    const otp = ref<any[]>([]);
+    const oldOtp = ref<any[]>([]);
+
+    watch(
+      () => props.value,
+      (val) => {
+        const fill = unref(val).split("");
+        otp.value = fill;
+      },
+      { immediate: true }
+    );
 
     const handleOnFocus = (index: number) => {
       activeInput.value = index;
@@ -67,6 +83,7 @@ export default /* #__PURE__ */ defineComponent({
     // Helper to return OTP from input
     const checkFilledAllInputs = () => {
       if (otp.value.join("").length === props.numInputs) {
+        emit("update:value", otp.value.join(""));
         return emit("on-complete", otp.value.join(""));
       }
       return "Wait until the user enters the required number of characters";
@@ -94,6 +111,7 @@ export default /* #__PURE__ */ defineComponent({
       otp.value[activeInput.value] = value;
 
       if (oldOtp.value.join("") !== otp.value.join("")) {
+        emit("update:value", otp.value.join(""));
         emit("on-change", otp.value.join(""));
         checkFilledAllInputs();
       }
@@ -110,7 +128,10 @@ export default /* #__PURE__ */ defineComponent({
         return "Invalid pasted data";
       }
 
-      if (props.inputType === "letter-numeric" && !pastedData.join("").match(/^\w+$/)) {
+      if (
+        props.inputType === "letter-numeric" &&
+        !pastedData.join("").match(/^\w+$/)
+      ) {
         return "Invalid pasted data";
       }
       // Paste data from focused input onwards
@@ -133,10 +154,20 @@ export default /* #__PURE__ */ defineComponent({
     };
     const clearInput = () => {
       if (otp.value.length > 0) {
+        emit("update:value", "");
         emit("on-change", "");
       }
       otp.value = [];
       activeInput.value = 0;
+    };
+
+    const fillInput = (value: string) => {
+      const fill = value.split("");
+      if (fill.length === props.numInputs) {
+        otp.value = fill;
+        emit("update:value", otp.value.join(""));
+        emit("on-complete", otp.value.join(""));
+      }
     };
 
     // Handle cases of backspace, delete, left arrow, right arrow
@@ -179,6 +210,7 @@ export default /* #__PURE__ */ defineComponent({
       handleOnFocus,
       checkFilledAllInputs,
       handleOnChange,
+      fillInput,
     };
   },
 });

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, unref } from "vue";
 import Vue3OtpInput from "@/components/vue3-otp-input.vue";
 
 export default defineComponent({
@@ -8,14 +8,35 @@ export default defineComponent({
     Vue3OtpInput,
   },
   setup() {
+    const otpInput = ref(null);
+    const bindValue = ref("");
     const handleOnComplete = (value: string) => {
       console.log("OTP completed: ", value);
+      console.log("OTP v-model:value: ", unref(bindValue));
     };
     const handleOnChange = (value: string) => {
       console.log("OTP changed: ", value);
+      console.log("OTP v-model:value: ", unref(bindValue));
+    };
+    const clear = () => {
+      if (unref(otpInput)) {
+        (unref(otpInput) as any).clearInput();
+      }
+    };
+    const fill = () => {
+      if (unref(otpInput)) {
+        (unref(otpInput) as any).fillInput("1299");
+      }
     };
 
-    return { handleOnComplete, handleOnChange };
+    return {
+      otpInput,
+      handleOnComplete,
+      handleOnChange,
+      bindValue,
+      clear,
+      fill,
+    };
   },
 });
 </script>
@@ -23,13 +44,16 @@ export default defineComponent({
 <template>
   <div id="app">
     <div style="display: flex; flex-direction: row">
+      <button @click="clear">clear</button>
+      <button @click="fill">fill</button>
       <vue3-otp-input
-        ref="otpInput0"
+        ref="otpInput"
         input-classes="otp-input"
         :conditionalClass="['one', 'two', 'three', 'four']"
         separator="-"
         inputType="letter-numeric"
         :num-inputs="4"
+        v-model:value="bindValue"
         :should-auto-focus="true"
         @on-change="handleOnChange"
         @on-complete="handleOnComplete"
