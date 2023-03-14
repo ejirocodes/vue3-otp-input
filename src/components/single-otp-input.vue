@@ -10,7 +10,7 @@
       min="0"
       max="9"
       maxlength="1"
-      pattern="[0-9]"
+      pattern="[a-zA-Z0-9]"
       v-model="model"
       :class="[inputClasses, conditionalClass, { 'is-complete': model }]"
       @input="handleOnChange"
