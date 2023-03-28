@@ -32,39 +32,32 @@ Without Build Tools
 
 ### 1/3. Register as a Vue component locally OR
 
-```javascript
+```ts
+<script setup lang="ts">
+import { ref } from "vue";
+import VOtpInput from "vue3-otp-input";
 
-<script>
-// Import in a Vue component
-import VOtpInput from 'vue3-otp-input';
+const otpInput = ref<InstanceType<typeof VOtpInput> | null>(null);
+const bindModal = ref("");
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    VOtpInput,
-  },
-  setup() {
-    const otpInput = ref(null)
-    const bindModal = ref(null)
-    const handleOnComplete = (value: string) => {
-      console.log('OTP completed: ', value);
-    };
+const handleOnComplete = (value: string) => {
+  console.log("OTP completed: ", value);
+};
 
-    const handleOnChange = (value: string) => {
-      console.log('OTP changed: ', value);
-    };
+const handleOnChange = (value: string) => {
+  console.log("OTP changed: ", value);
+};
 
-     const clearInput = () => {
-      otpInput.value.clearInput()
-    }
-     const fillInput = (value) => {
-      otpInput.value.fillInput(value)
-    }
+const clearInput = () => {
+  otpInput.value?.clearInput();
+};
 
-    return { handleOnComplete, handleOnChange, clearInput, fillInput, otpInput, bindModal };
-  },
-});
+const fillInput = (value: string) => {
+  console.log(value);
+  otpInput.value?.fillInput(value);
+};
 </script>
+
 
 ```
 
@@ -87,23 +80,23 @@ app.component('v-otp-input', VOtpInput).mount('#app')
 
 ```html
 <template>
-  <div style="display: flex; flex-direction: row;">
-    <v-otp-input
-      ref="otpInput"
-      v-model:value="bindModal"
-      input-classes="otp-input"
-      separator="-"
-      :num-inputs="4"
-      :should-auto-focus="true"
-      :is-input-num="true"
-      :conditionalClass="['one', 'two', 'three', 'four']"
-      :placeholder="['*', '*', '*', '*']"
-      @on-change="handleOnChange"
-      @on-complete="handleOnComplete"
-    />
-  </div>
-  <button @click="clearInput()">Clear Input</button>
-  <button @click="fillInput('2929')">Clear Input</button>
+    <div style="display: flex; flex-direction: row">
+      <v-otp-input
+        ref="otpInput"
+        v-model:value="bindModal"
+        input-classes="otp-input"
+        separator="-"
+        :num-inputs="4"
+        :should-auto-focus="true"
+        :is-input-num="true"
+        :conditionalClass="['one', 'two', 'three', 'four']"
+        :placeholder="['*', '*', '*', '*']"
+        @on-change="handleOnChange"
+        @on-complete="handleOnComplete"
+      />
+    </div>
+    <button @click="clearInput()">Clear Input</button>
+    <button @click="fillInput('2929')">Fill Input</button>
 </template>
 ```
 
