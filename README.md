@@ -45,7 +45,7 @@ export default defineComponent({
   },
   setup() {
     const otpInput = ref(null)
-
+    const bindModal = ref(null)
     const handleOnComplete = (value: string) => {
       console.log('OTP completed: ', value);
     };
@@ -57,8 +57,11 @@ export default defineComponent({
      const clearInput = () => {
       otpInput.value.clearInput()
     }
+     const fillInput = (value) => {
+      otpInput.value.fillInput(value)
+    }
 
-    return { handleOnComplete, handleOnChange, clearInput, otpInput };
+    return { handleOnComplete, handleOnChange, clearInput, fillInput, otpInput, bindModal };
   },
 });
 </script>
@@ -87,6 +90,7 @@ app.component('v-otp-input', VOtpInput).mount('#app')
   <div style="display: flex; flex-direction: row;">
     <v-otp-input
       ref="otpInput"
+      v-model:value="bindModal"
       input-classes="otp-input"
       separator="-"
       :num-inputs="4"
@@ -99,6 +103,7 @@ app.component('v-otp-input', VOtpInput).mount('#app')
     />
   </div>
   <button @click="clearInput()">Clear Input</button>
+  <button @click="fillInput('2929')">Clear Input</button>
 </template>
 ```
 
@@ -144,6 +149,13 @@ input::placeholder {
     <th>Required</th>
     <th>Default</th>
     <th>Description</th>
+  </tr>
+    <tr>
+    <td>value</td>
+    <td>string</td>
+    <td>false</td>
+    <td>""</td>
+    <td>v-modal:value for bind dynamic value</td>
   </tr>
   <tr>
     <td>num-inputs</td>
@@ -220,6 +232,10 @@ input::placeholder {
   <tr>
      <td>clearInput()</td>
      <td>Use with ref for clearing all otp inputs, see code example section.</td>
+  </tr>
+    <tr>
+     <td>fillInput()</td>
+     <td>Use with ref for fill otp inputs, see code example section.</td>
   </tr>
 </table>
 
