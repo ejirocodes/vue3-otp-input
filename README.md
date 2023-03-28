@@ -88,7 +88,7 @@ app.component('v-otp-input', VOtpInput).mount('#app')
         separator="-"
         :num-inputs="4"
         :should-auto-focus="true"
-        :is-input-num="true"
+        input-type="letter-numeric"
         :conditionalClass="['one', 'two', 'three', 'four']"
         :placeholder="['*', '*', '*', '*']"
         @on-change="handleOnChange"

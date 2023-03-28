@@ -230,7 +230,7 @@ export default /* #__PURE__ */ defineComponent({
 </script>
 
 <template>
-  <div style="display: flex">
+  <div style="display: flex" class="otp-input-container">
     <!--    To turn off autocomplete when otp-input is password-->
     <input
       v-if="inputType === 'password'"
