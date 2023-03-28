@@ -41,7 +41,20 @@ export default /* #__PURE__ */ defineComponent({
         ["number", "tel", "letter-numeric", "password"].includes(value),
     },
     inputmode: {
-      type: String,
+      type: String as PropType<
+        | "none"
+        | "text"
+        | "tel"
+        | "url"
+        | "email"
+        | "numeric"
+        | "decimal"
+        | "search"
+        /**
+         * Specify that a standard HTML element should behave like a defined custom built-in element
+         * @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is
+         */
+      >,
       validator: (value: string) =>
         ["numeric", "text", "tel", "none"].includes(value),
       default: "numeric",
@@ -61,8 +74,8 @@ export default /* #__PURE__ */ defineComponent({
   },
   setup(props, { emit }) {
     const activeInput = ref<number>(0);
-    const otp = ref<any[]>([]);
-    const oldOtp = ref<any[]>([]);
+    const otp = ref<string[]>([]);
+    const oldOtp = ref<string[]>([]);
 
     watch(
       () => props.value,

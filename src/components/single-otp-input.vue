@@ -40,7 +40,20 @@ export default defineComponent({
       default: "tel",
     },
     inputmode: {
-      type: String,
+      type: String as PropType<
+        | "none"
+        | "text"
+        | "tel"
+        | "url"
+        | "email"
+        | "numeric"
+        | "decimal"
+        | "search"
+        /**
+         * Specify that a standard HTML element should behave like a defined custom built-in element
+         * @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is
+         */
+      >,
       default: "numeric",
     },
     value: {

@@ -59,8 +59,8 @@
     "url": "https://github.com/ejirocodes/vue3-otp-input/issues"
   },
   "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=7.0.0"
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
   },
   "keywords": [
     "vue 3 otp input",

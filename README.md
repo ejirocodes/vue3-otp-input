@@ -28,7 +28,7 @@ Without Build Tools
 <script src="https://unpkg.com/vue3-otp-input"></script>
 ```
 
-## 📖 Usage
+## 📖 Usage [Demo](https://github.com/ejirocodes/vue3-otp-input/blob/main/dev/serve.vue)
 
 ### 1/3. Register as a Vue component locally OR
 
@@ -235,7 +235,7 @@ input::placeholder {
   </tr>
     <tr>
      <td>fillInput()</td>
-     <td>Use with ref for fill otp inputs, see code example section.</td>
+     <td>Use with ref for fill otp inputs. The value should be same length as `numInputs` length. See code example section.</td>
   </tr>
 </table>
 
