@@ -1,44 +1,30 @@
-<script lang="ts">
-import { defineComponent, ref, unref } from "vue";
+<script setup lang="ts">
+import { ref, unref } from "vue";
 import Vue3OtpInput from "@/components/vue3-otp-input.vue";
 
-export default defineComponent({
-  name: "ServeDev",
-  components: {
-    Vue3OtpInput,
-  },
-  setup() {
-    const otpInput = ref(null);
-    const bindValue = ref("");
-    const handleOnComplete = (value: string) => {
-      console.log("OTP completed: ", value);
-      console.log("OTP v-model:value: ", unref(bindValue));
-    };
-    const handleOnChange = (value: string) => {
-      console.log("OTP changed: ", value);
-      console.log("OTP v-model:value: ", unref(bindValue));
-    };
-    const clear = () => {
-      if (unref(otpInput)) {
-        (unref(otpInput) as any).clearInput();
-      }
-    };
-    const fill = () => {
-      if (unref(otpInput)) {
-        (unref(otpInput) as any).fillInput("1299");
-      }
-    };
+const otpInput = ref<InstanceType<typeof Vue3OtpInput> | null>(null);
+const bindValue = ref("");
 
-    return {
-      otpInput,
-      handleOnComplete,
-      handleOnChange,
-      bindValue,
-      clear,
-      fill,
-    };
-  },
-});
+const handleOnComplete = (value: string) => {
+  console.log("OTP completed: ", value);
+  console.log("OTP v-model:value: ", unref(bindValue));
+};
+
+const handleOnChange = (value: string) => {
+  console.log("OTP changed: ", value);
+  console.log("OTP v-model:value: ", unref(bindValue));
+};
+const clear = () => {
+  if (unref(otpInput)) {
+    (unref(otpInput) as any).clearInput();
+  }
+};
+
+const fill = () => {
+  if (unref(otpInput)) {
+    unref(otpInput)?.fillInput("12ee99");
+  }
+};
 </script>
 
 <template>
