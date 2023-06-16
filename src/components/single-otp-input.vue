@@ -165,7 +165,7 @@ export default defineComponent({
       input,
       model,
       inputTypeValue:
-        props.inputType === "letter-numeric" ? "text" : props.inputType,
+        ["letter-numeric", "number"].includes(props.inputType) ? "text" : props.inputType,
     };
   },
 });

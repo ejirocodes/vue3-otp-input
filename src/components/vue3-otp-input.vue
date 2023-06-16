@@ -24,7 +24,7 @@ export default /* #__PURE__ */ defineComponent({
     },
     separator: {
       type: String,
-      default: "**",
+      default: "",
     },
     inputClasses: {
       type: [String, Array] as PropType<string[] | string>,
@@ -57,7 +57,7 @@ export default /* #__PURE__ */ defineComponent({
       >,
       validator: (value: string) =>
         ["numeric", "text", "tel", "none"].includes(value),
-      default: "numeric",
+      default: "text",
     },
     shouldAutoFocus: {
       type: Boolean,
