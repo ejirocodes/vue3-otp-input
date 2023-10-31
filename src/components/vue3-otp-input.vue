@@ -71,6 +71,10 @@ export default /* #__PURE__ */ defineComponent({
       type: Boolean,
       default: false,
     },
+    shouldFocusOrder: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { emit }) {
     const activeInput = ref<number>(0);
@@ -184,7 +188,7 @@ export default /* #__PURE__ */ defineComponent({
     };
 
     // Handle cases of backspace, delete, left arrow, right arrow
-    const handleOnKeyDown = (event: KeyboardEvent) => {
+    const handleOnKeyDown = (event: KeyboardEvent, index: number) => {
       switch (event.keyCode) {
         case BACKSPACE:
           event.preventDefault();
@@ -204,7 +208,20 @@ export default /* #__PURE__ */ defineComponent({
           focusNextInput();
           break;
         default:
+          focusOrder(index);
           break;
+      }
+    };
+
+    const focusOrder = (currentIndex: number) => {
+      if (props.shouldFocusOrder) {
+        setTimeout(() => {
+          const len = otp.value.join("").length;
+          if (currentIndex - len >= 0) {
+            activeInput.value = len;
+            otp.value[currentIndex] = "";
+          }
+        }, 100);
       }
     };
 
@@ -254,7 +271,7 @@ export default /* #__PURE__ */ defineComponent({
       :placeholder="placeholder[i]"
       :is-disabled="isDisabled"
       @on-change="handleOnChange"
-      @on-keydown="handleOnKeyDown"
+      @on-keydown="handleOnKeyDown($event, i)"
       @on-paste="handleOnPaste"
       @on-focus="handleOnFocus(i)"
       @on-blur="handleOnBlur"
