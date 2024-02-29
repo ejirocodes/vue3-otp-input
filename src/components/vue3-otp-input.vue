@@ -213,6 +213,15 @@ export default /* #__PURE__ */ defineComponent({
       }
     };
 
+    /**
+     *
+     * @param currentIndex - index of the input
+     * @description - This function is used to focus the input in the order of the input index
+     *
+     * @example
+     * 1. If the user is entering the OTP in the order of the input index, then the input will be focused in the order of the input index
+     * 2. If the user is entering the OTP in the reverse order of the input index, then the input will be focused in the reverse order of the input index
+     */
     const focusOrder = (currentIndex: number) => {
       if (props.shouldFocusOrder) {
         setTimeout(() => {
