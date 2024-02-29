@@ -80,8 +80,11 @@ export default /* #__PURE__ */ defineComponent({
     watch(
       () => props.value,
       (val) => {
-        const fill = unref(val).split("");
-        otp.value = fill;
+        // fix issue: https://github.com/ejirocodes/vue3-otp-input/issues/34
+        if (val.length === props.numInputs || otp.value.length === 0) {
+          const fill = unref(val).split('')
+          otp.value = fill
+        }
       },
       { immediate: true }
     );
