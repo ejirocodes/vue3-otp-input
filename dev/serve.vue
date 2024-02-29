@@ -41,6 +41,7 @@ const fill = () => {
         :num-inputs="4"
         v-model:value="bindValue"
         :should-auto-focus="true"
+        :should-focus-order="true"
         @on-change="handleOnChange"
         @on-complete="handleOnComplete"
         :placeholder="['*', '*', '*', '*']"

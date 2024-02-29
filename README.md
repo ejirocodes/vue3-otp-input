@@ -83,16 +83,17 @@ app.component('v-otp-input', VOtpInput).mount('#app')
     <div style="display: flex; flex-direction: row">
       <v-otp-input
         ref="otpInput"
-        v-model:value="bindModal"
         input-classes="otp-input"
-        separator="-"
-        :num-inputs="4"
-        :should-auto-focus="true"
-        input-type="letter-numeric"
         :conditionalClass="['one', 'two', 'three', 'four']"
-        :placeholder="['*', '*', '*', '*']"
+        separator="-"
+        inputType="letter-numeric"
+        :num-inputs="4"
+        v-model:value="bindValue"
+        :should-auto-focus="true"
+        :should-focus-order="true"
         @on-change="handleOnChange"
         @on-complete="handleOnComplete"
+        :placeholder="['*', '*', '*', '*']"
       />
     </div>
     <button @click="clearInput()">Clear Input</button>
@@ -191,6 +192,13 @@ input::placeholder {
     <td>false</td>
     <td>false</td>
     <td>Auto focuses input on inital page load.</td>
+  </tr>
+  <tr>
+    <td>should-focus-order</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>false</td>
+    <td>Auto correct the input order. See https://github.com/ejirocodes/vue3-otp-input/pull/39</td>
   </tr>
   <tr>
     <td>placeholder</td>
