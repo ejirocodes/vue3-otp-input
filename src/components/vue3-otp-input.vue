@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref, unref, PropType, watch } from "vue";
+import { defineComponent, ref, PropType, watch } from "vue";
 import SingleOtpInput from "./single-otp-input.vue";
 
 // keyCode constants
@@ -86,7 +86,7 @@ export default /* #__PURE__ */ defineComponent({
       (val) => {
         // fix issue: https://github.com/ejirocodes/vue3-otp-input/issues/34
         if (val.length === props.numInputs || otp.value.length === 0) {
-          const fill = unref(val).split('')
+          const fill = val.split('')
           otp.value = fill
         }
       },
