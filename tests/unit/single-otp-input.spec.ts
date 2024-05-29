@@ -1,5 +1,8 @@
 import { mount } from "@vue/test-utils";
-import SingleOtp from "@/components/single-otp-input.vue";
+import SingleOtp from "../../src/components/single-otp-input.vue";
+import { describe } from "vitest";
+import { it } from "vitest";
+import { expect } from "vitest";
 
 describe("SingleOtpInput.vue", () => {
   it("renders input type", () => {
