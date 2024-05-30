@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, unref } from "vue";
-import Vue3OtpInput from "@/components/vue3-otp-input.vue";
+import Vue3OtpInput from ".";
 
 const otpInput = ref<InstanceType<typeof Vue3OtpInput> | null>(null);
 const bindValue = ref("");
@@ -28,25 +28,24 @@ const fill = () => {
 </script>
 
 <template>
-  <div id="app">
-    <div style="display: flex; flex-direction: row">
-      <button @click="clear">clear</button>
-      <button @click="fill">fill</button>
-      <vue3-otp-input
-        ref="otpInput"
-        input-classes="otp-input"
-        :conditionalClass="['one', 'two', 'three', 'four']"
-        separator="-"
-        inputType="letter-numeric"
-        :num-inputs="4"
-        v-model:value="bindValue"
-        :should-auto-focus="true"
-        :should-focus-order="true"
-        @on-change="handleOnChange"
-        @on-complete="handleOnComplete"
-        :placeholder="['*', '*', '*', '*']"
-      />
-    </div>
+  <div style="display: flex; flex-direction: row">
+    <button @click="clear">clear</button>
+    <button @click="fill">fill</button>
+    <vue3-otp-input
+      ref="otpInput"
+      input-classes="otp-input"
+      :conditionalClass="['one', 'two', 'three', 'four']"
+      separator="-"
+      inputType="letter-numeric"
+      :num-inputs="4"
+      v-model:value="bindValue"
+      :should-auto-focus="true"
+      :should-focus-order="true"
+      @on-change="handleOnChange"
+      @on-complete="handleOnComplete"
+      :placeholder="['*', '*', '*', '*']"
+      @update:value="bindValue = $event"
+    />
   </div>
 </template>
 
