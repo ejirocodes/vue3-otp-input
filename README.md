@@ -8,27 +8,26 @@
 
 ## ⚙️ Installation
 
-To install the latest stable version:
+### Install as package
+
+You can install `vue3-otp-input` via the terminal.
 
 ```sh
-npm i vue3-otp-input
+pnpm i vue3-otp-input
 ```
 
 OR
 
-```sh
-yarn add vue3-otp-input
-```
-
-OR
-
-Without Build Tools
+### Install via CDN
 
 ```sh
 <script src="https://unpkg.com/vue3-otp-input"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue3-otp-input"></script>
+
 ```
 
-## 📖 Usage [Demo](https://github.com/ejirocodes/vue3-otp-input/blob/main/dev/serve.vue)
+## 📖 Usage [Demo](https://github.com/ejirocodes/vue3-otp-input/blob/main/src/App.vue)
 
 ### 1/3. Register as a Vue component locally OR
 
