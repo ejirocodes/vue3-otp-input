@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, unref } from "vue";
-import Vue3OtpInput from "vue3-otp-input";
+import Vue3OtpInput from ".";
 
 const otpInput = ref<InstanceType<typeof Vue3OtpInput> | null>(null);
 const bindValue = ref("");

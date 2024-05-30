@@ -8,9 +8,6 @@ dependencies:
   vue:
     specifier: ^3.4.27
     version: 3.4.27(typescript@5.4.5)
-  vue3-otp-input:
-    specifier: file:vue3-otp-input-0.4.4.tgz
-    version: file:vue3-otp-input-0.4.4.tgz(vue@3.4.27)
 
 devDependencies:
   '@types/jsdom':
@@ -2390,14 +2387,3 @@ packages:
     optionalDependencies:
       commander: 9.5.0
     dev: true
-
-  file:vue3-otp-input-0.4.4.tgz(vue@3.4.27):
-    resolution: {integrity: sha512-Ea+CDqy4p4jomEjbUcpEq9d0Om5JgD2wFaJyhMwblp/kVixqDN3oqDqtpx36Jf5bAlFUFRfVTZq5JPexOhmazQ==, tarball: file:vue3-otp-input-0.4.4.tgz}
-    id: file:vue3-otp-input-0.4.4.tgz
-    name: vue3-otp-input
-    version: 0.4.4
-    peerDependencies:
-      vue: ^3.0.*
-    dependencies:
-      vue: 3.4.27(typescript@5.4.5)
-    dev: false

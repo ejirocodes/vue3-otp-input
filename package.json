@@ -35,8 +35,7 @@
     "vue": "^3.0.*"
   },
   "dependencies": {
-    "vue": "^3.4.27",
-    "vue3-otp-input": "file:vue3-otp-input-0.4.4.tgz"
+    "vue": "^3.4.27"
   },
   "devDependencies": {
     "@types/jsdom": "^21.1.6",

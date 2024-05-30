@@ -94,9 +94,7 @@ const focusPrevInput = () => {
 const changeCodeAtFocus = (value: number | string) => {
   oldOtp.value = Object.assign([], otp.value);
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  otp.value[activeInput.value] = value;
+  otp.value[activeInput.value] = value.toString();
 
   if (oldOtp.value.join("") !== otp.value.join("")) {
     emit("update:value", otp.value.join(""));
