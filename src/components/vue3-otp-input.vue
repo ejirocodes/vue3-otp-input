@@ -37,6 +37,9 @@ const props = withDefaults(defineProps<Props>(), {
   inputClasses: "",
   inputmode: "text",
   shouldAutoFocus: false,
+  isDisabled: false,
+  placeholder: () => [],
+  conditionalClass: () => [],
 });
 
 const emit = defineEmits<{
