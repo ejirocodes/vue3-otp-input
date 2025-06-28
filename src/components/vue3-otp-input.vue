@@ -28,6 +28,7 @@ type Props = {
   placeholder?: string[];
   isDisabled?: boolean;
   shouldFocusOrder?: boolean;
+  pasteFilter?: boolean;
 };
 
 const props = withDefaults(defineProps<Props>(), {
@@ -40,6 +41,7 @@ const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   placeholder: () => [],
   conditionalClass: () => [],
+  pasteFilter: false,
 });
 
 const emit = defineEmits<{
@@ -112,20 +114,37 @@ const changeCodeAtFocus = (value: number | string) => {
 // Handle pasted OTP
 const handleOnPaste = (event: any) => {
   event.preventDefault();
-  const pastedData = event.clipboardData
+  let pastedData = event.clipboardData
     .getData("text/plain")
     .slice(0, props.numInputs - activeInput.value)
     .split("");
-  if (props.inputType === "number" && !pastedData.join("").match(/^\d+$/)) {
-    return "Invalid pasted data";
+
+  if (props.pasteFilter) {
+    // Filter characters based on input type when pasteFilter is enabled
+    if (props.inputType === "number") {
+      pastedData = pastedData.filter((char: string) => /^\d$/.test(char));
+    } else if (props.inputType === "letter-numeric") {
+      pastedData = pastedData.filter((char: string) => /^\w$/.test(char));
+    }
+
+    // If no valid characters remain after filtering, return early
+    if (pastedData.length === 0) {
+      return "No valid characters to paste";
+    }
+  } else {
+    // Original validation behavior when pasteFilter is disabled
+    if (props.inputType === "number" && !pastedData.join("").match(/^\d+$/)) {
+      return "Invalid pasted data";
+    }
+
+    if (
+      props.inputType === "letter-numeric" &&
+      !pastedData.join("").match(/^\w+$/)
+    ) {
+      return "Invalid pasted data";
+    }
   }
 
-  if (
-    props.inputType === "letter-numeric" &&
-    !pastedData.join("").match(/^\w+$/)
-  ) {
-    return "Invalid pasted data";
-  }
   // Paste data from focused input onwards
   const currentCharsInOtp = otp.value.slice(0, activeInput.value);
   const combinedWithPastedData = currentCharsInOtp.concat(pastedData);

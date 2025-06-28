@@ -220,6 +220,13 @@ input::placeholder {
     <td>false</td>
     <td>Disables all the input fields.</td>
   </tr>
+  <tr>
+    <td>paste-filter</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>false</td>
+    <td>When enabled, filters out invalid characters during paste operations instead of rejecting the entire paste. For "number" input type, only numeric characters are kept. For "letter-numeric" type, only alphanumeric characters are kept.</td>
+  </tr>
 </table>
 
 ## 🤺 Methods
