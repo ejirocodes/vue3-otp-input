@@ -116,7 +116,6 @@ const handleOnPaste = (event: any) => {
   event.preventDefault();
   let pastedData = event.clipboardData
     .getData("text/plain")
-    .slice(0, props.numInputs - activeInput.value)
     .split("");
 
   if (props.pasteFilter) {
@@ -131,7 +130,13 @@ const handleOnPaste = (event: any) => {
     if (pastedData.length === 0) {
       return "No valid characters to paste";
     }
+
+    // Apply length limit after filtering
+    pastedData = pastedData.slice(0, props.numInputs - activeInput.value);
   } else {
+    // Apply length limit before validation for original behavior
+    pastedData = pastedData.slice(0, props.numInputs - activeInput.value);
+
     // Original validation behavior when pasteFilter is disabled
     if (props.inputType === "number" && !pastedData.join("").match(/^\d+$/)) {
       return "Invalid pasted data";
