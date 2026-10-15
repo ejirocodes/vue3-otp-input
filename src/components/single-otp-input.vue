@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from "vue";
-import type { Ref } from "vue";
 
 type Props = {
   inputType?: "number" | "tel" | "letter-numeric" | "password";
@@ -47,7 +46,7 @@ const emit = defineEmits<{
 }>();
 
 const model = ref(props.value || "");
-const input = ref<HTMLInputElement | null>(null) as Ref<HTMLInputElement>;
+const input = ref<HTMLInputElement | null>(null);
 
 const handleOnChange = (e: Event) => {
   const value = (e.target as HTMLInputElement).value;
@@ -96,7 +95,7 @@ const handleOnKeyDown = (event: KeyboardEvent) => {
 const handleOnPaste = (event: ClipboardEvent) => emit("on-paste", event);
 
 const handleOnFocus = () => {
-  input.value.select();
+  input.value?.select();
   return emit("on-focus");
 };
 
